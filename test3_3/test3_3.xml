@@ -317,7 +317,18 @@
           </cc:Infrastructures>
         </cc:Network>
       </cc:Networks>
-      <cc:NetworkFilters />
+      <cc:NetworkFilters>
+        <cc:NetworkFilter ref="in_all_tcp" />
+        <cc:NetworkFilter ref="in_all_udp" />
+        <cc:NetworkFilter ref="in_all_icmp" />
+        <cc:NetworkFilter ref="out_all_tcp" />
+        <cc:NetworkFilter ref="out_all_udp" />
+        <cc:NetworkFilter ref="out_all_icmp" />
+      </cc:NetworkFilters>
+      <cc:Routes>
+        <cc:Route ref="internet" />
+        <cc:Route ref="net2" />
+      </cc:Routes>
     </cc:NetworkGroup>
     <cc:NetworkGroup id="network_group_2">
       <cc:Name>Network Group 2</cc:Name>
@@ -328,9 +339,77 @@
           </cc:Infrastructures>
         </cc:Network>
       </cc:Networks>
-      <cc:NetworkFilters />
+      <cc:NetworkFilters>
+        <cc:NetworkFilter ref="in_all_tcp" />
+        <cc:NetworkFilter ref="in_all_udp" />
+        <cc:NetworkFilter ref="in_all_icmp" />
+        <cc:NetworkFilter ref="out_all_tcp" />
+        <cc:NetworkFilter ref="out_all_udp" />
+        <cc:NetworkFilter ref="out_all_icmp" />
+      </cc:NetworkFilters>
+      <cc:Routes>
+        <cc:Route ref="net1" />
+      </cc:Routes>
     </cc:NetworkGroup>
   </cc:NetworkGroups>
+  <cc:Routes>
+    <cc:Route id="internet">
+      <cc:Destination>all</cc:Destination>
+      <cc:Target>{{InternetGateway}}</cc:Target>
+    </cc:Route>
+    <cc:Route id="net1">
+      <cc:Destination ref="network_group_1" />
+      <cc:Target ref="network_group_1" />
+    </cc:Route>
+    <cc:Route id="net2">
+      <cc:Destination ref="network_group_2" />
+      <cc:Target ref="network_group_2" />
+    </cc:Route>
+  </cc:Routes>
+  <cc:NetworkFilters>
+    <cc:NetworkFilter id="in_all_tcp">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>all</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source>all</cc:Source>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:NetworkFilter>
+    <cc:NetworkFilter id="in_all_udp">
+      <cc:Protocol>udp</cc:Protocol>
+      <cc:Port>all</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source>all</cc:Source>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:NetworkFilter>
+    <cc:NetworkFilter id="in_all_icmp">
+      <cc:Protocol>icmp</cc:Protocol>
+      <cc:Port>all</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source>all</cc:Source>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:NetworkFilter>
+    <cc:NetworkFilter id="out_all_tcp">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>all</cc:Port>
+      <cc:Direction>egress</cc:Direction>
+      <cc:Destination>all</cc:Destination>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:NetworkFilter>
+    <cc:NetworkFilter id="out_all_udp">
+      <cc:Protocol>udp</cc:Protocol>
+      <cc:Port>all</cc:Port>
+      <cc:Direction>egress</cc:Direction>
+      <cc:Destination>all</cc:Destination>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:NetworkFilter>
+    <cc:NetworkFilter id="out_all_icmp">
+      <cc:Protocol>icmp</cc:Protocol>
+      <cc:Port>all</cc:Port>
+      <cc:Direction>egress</cc:Direction>
+      <cc:Destination>all</cc:Destination>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:NetworkFilter>
+  </cc:NetworkFilters>
   <cc:FloatingIPs>
     <cc:FloatingIP id="fip">
       <cc:Name>fip</cc:Name>
