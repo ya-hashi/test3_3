@@ -318,6 +318,10 @@
         </cc:Network>
       </cc:Networks>
       <cc:NetworkFilters />
+      <cc:Routes>
+        <cc:Route ref="route_all" />
+        <cc:Route ref="route_network_group_2" />
+      </cc:Routes>
     </cc:NetworkGroup>
     <cc:NetworkGroup id="network_group_2">
       <cc:Name>Network Group 2</cc:Name>
@@ -329,6 +333,10 @@
         </cc:Network>
       </cc:Networks>
       <cc:NetworkFilters />
+       <cc:Routes>
+        <cc:Route ref="route_all" />
+        <cc:Route ref="network_group_1" />
+      </cc:Routes>
     </cc:NetworkGroup>
   </cc:NetworkGroups>
   <cc:FloatingIPs>
