@@ -318,10 +318,6 @@
         </cc:Network>
       </cc:Networks>
       <cc:NetworkFilters />
-      <cc:Routes>
-        <cc:Route ref="route_all" />
-        <cc:Route ref="route_network_group_2" />
-      </cc:Routes>
     </cc:NetworkGroup>
     <cc:NetworkGroup id="network_group_2">
       <cc:Name>Network Group 2</cc:Name>
@@ -333,26 +329,8 @@
         </cc:Network>
       </cc:Networks>
       <cc:NetworkFilters />
-       <cc:Routes>
-        <cc:Route ref="route_all" />
-        <cc:Route ref="network_group_1" />
-      </cc:Routes>
     </cc:NetworkGroup>
   </cc:NetworkGroups>
-  <cc:Routes>
-    <cc:Route id="route_all">
-      <cc:Destination>all</cc:Destination>
-      <cc:Target>{{InternetGateway}}</cc:Target>
-    </cc:Route>
-    <cc:Route id="network_group_1">
-      <cc:Destination ref="network_group_1" />
-      <cc:Target ref="network_group_1" />
-    </cc:Route>
-    <cc:Route id="network_group_2">
-      <cc:Destination ref="network_group_2" />
-      <cc:Target ref="network_group_2" />
-    </cc:Route>
-  </cc:Routes>
   <cc:FloatingIPs>
     <cc:FloatingIP id="fip">
       <cc:Name>fip</cc:Name>
