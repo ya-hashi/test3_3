@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ccm:Editor xmlns:ccm="http://cloudconductor.org/namespaces/ccm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ccm:Nodes>
+    <ccm:Node id="infrastructure_1" xsi:type="ccm:Infrastructure">
+      <ccm:x>91.5</ccm:x>
+      <ccm:y>43.5</ccm:y>
+      <ccm:z>0</ccm:z>
+      <ccm:width>570</ccm:width>
+      <ccm:height>340</ccm:height>
+    </ccm:Node>
+    <ccm:Node id="network_1" xsi:type="ccm:Network">
+      <ccm:x>145.5</ccm:x>
+      <ccm:y>106.5</ccm:y>
+      <ccm:z>1</ccm:z>
+      <ccm:children>3</ccm:children>
+    </ccm:Node>
+    <ccm:Node id="network_2" xsi:type="ccm:Network">
+      <ccm:x>144.5</ccm:x>
+      <ccm:y>263.5</ccm:y>
+      <ccm:z>2</ccm:z>
+      <ccm:children>3</ccm:children>
+    </ccm:Node>
+    <ccm:Node id="router" xsi:type="ccm:Router">
+      <ccm:x>212.5</ccm:x>
+      <ccm:y>146.5</ccm:y>
+      <ccm:z>4</ccm:z>
+    </ccm:Node>
+    <ccm:Node id="apache_m" xsi:type="ccm:Machine">
+      <ccm:x>313.5</ccm:x>
+      <ccm:y>143.5</ccm:y>
+      <ccm:z>6</ccm:z>
+    </ccm:Node>
+    <ccm:Node id="zabbix_m" xsi:type="ccm:Machine">
+      <ccm:x>462.5</ccm:x>
+      <ccm:y>148.5</ccm:y>
+      <ccm:z>7</ccm:z>
+    </ccm:Node>
+    <ccm:Node id="tomacat_m" xsi:type="ccm:Machine">
+      <ccm:x>311.5</ccm:x>
+      <ccm:y>304.5</ccm:y>
+      <ccm:z>10</ccm:z>
+    </ccm:Node>
+    <ccm:Node id="postgresql_m" xsi:type="ccm:Machine">
+      <ccm:x>465.5</ccm:x>
+      <ccm:y>304.5</ccm:y>
+      <ccm:z>11</ccm:z>
+    </ccm:Node>
+  </ccm:Nodes>
+  <ccm:Links>
+    <ccm:Link>
+      <ccm:Source ref="router" />
+      <ccm:Target ref="network_1">
+        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(1)    </ccm:Selector>
+      </ccm:Target>
+    </ccm:Link>
+    <ccm:Link>
+      <ccm:Source ref="network_2">
+        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(1)    </ccm:Selector>
+      </ccm:Source>
+      <ccm:Target ref="router" />
+    </ccm:Link>
+    <ccm:Link>
+      <ccm:Source ref="zabbix_m">
+        <ccm:Selector>g:nth-child(1) g:nth-child(2)   </ccm:Selector>
+      </ccm:Source>
+      <ccm:Target ref="network_1">
+        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(3)    </ccm:Selector>
+      </ccm:Target>
+    </ccm:Link>
+    <ccm:Link>
+      <ccm:Source ref="apache_m">
+        <ccm:Selector>g:nth-child(1) g:nth-child(2)   </ccm:Selector>
+      </ccm:Source>
+      <ccm:Target ref="network_1">
+        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(2)    </ccm:Selector>
+      </ccm:Target>
+    </ccm:Link>
+    <ccm:Link>
+      <ccm:Source ref="tomacat_m">
+        <ccm:Selector>g:nth-child(1) g:nth-child(2)   </ccm:Selector>
+      </ccm:Source>
+      <ccm:Target ref="network_2">
+        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(2)    </ccm:Selector>
+      </ccm:Target>
+    </ccm:Link>
+    <ccm:Link>
+      <ccm:Source ref="postgresql_m">
+        <ccm:Selector>g:nth-child(1) g:nth-child(2)   </ccm:Selector>
+      </ccm:Source>
+      <ccm:Target ref="network_2">
+        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(3)    </ccm:Selector>
+      </ccm:Target>
+    </ccm:Link>
+  </ccm:Links>
+</ccm:Editor>
