@@ -17,7 +17,7 @@
       <cc:OSType>CentOS</cc:OSType>
       <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
       <cc:NetworkInterfaces>
-        <cc:NetworkInterface ref="network_group_1" />
+        <cc:NetworkInterface ref="dmz" />
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
         <cc:MachineFilter ref="http80" />
@@ -34,7 +34,7 @@
       <cc:OSType>CentOS</cc:OSType>
       <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
       <cc:NetworkInterfaces>
-        <cc:NetworkInterface ref="network_group_1" />
+        <cc:NetworkInterface ref="dmz" />
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
         <cc:MachineFilter ref="in_all_tcp" />
@@ -51,7 +51,7 @@
       <cc:OSType>CentOS</cc:OSType>
       <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
       <cc:NetworkInterfaces>
-        <cc:NetworkInterface ref="network_group_2" />
+        <cc:NetworkInterface ref="private_net" />
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
         <cc:MachineFilter ref="out_all_tcp" />
@@ -68,7 +68,7 @@
       <cc:OSType>CentOS</cc:OSType>
       <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
       <cc:NetworkInterfaces>
-        <cc:NetworkInterface ref="network_group_2" />
+        <cc:NetworkInterface ref="private_net" />
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
         <cc:MachineFilter ref="out_all_tcp" />
@@ -301,15 +301,15 @@
   </cc:MachineFilters>
   <cc:Networks>
     <cc:Network id="network_1">
-      <cc:Name>Network 1</cc:Name>
+      <cc:Name>network_1</cc:Name>
     </cc:Network>
     <cc:Network id="network_2">
-      <cc:Name>Network 2</cc:Name>
+      <cc:Name>Network_2</cc:Name>
     </cc:Network>
   </cc:Networks>
   <cc:NetworkGroups>
-    <cc:NetworkGroup id="network_group_1">
-      <cc:Name>Network Group 1</cc:Name>
+    <cc:NetworkGroup id="dmz">
+      <cc:Name>dmz</cc:Name>
       <cc:Networks>
         <cc:Network ref="network_1">
           <cc:Infrastructures>
@@ -330,8 +330,8 @@
         <cc:Route ref="net2" />
       </cc:Routes>
     </cc:NetworkGroup>
-    <cc:NetworkGroup id="network_group_2">
-      <cc:Name>Network Group 2</cc:Name>
+    <cc:NetworkGroup id="private_net">
+      <cc:Name>private_net</cc:Name>
       <cc:Networks>
         <cc:Network ref="network_2">
           <cc:Infrastructures>
@@ -362,12 +362,12 @@
       <cc:Target>{{InternetGateway}}</cc:Target>
     </cc:Route>
     <cc:Route id="net1">
-      <cc:Destination ref="network_group_1" />
-      <cc:Target ref="network_group_1" />
+      <cc:Destination ref="dmz" />
+      <cc:Target ref="dmz" />
     </cc:Route>
     <cc:Route id="net2">
-      <cc:Destination ref="network_group_2" />
-      <cc:Target ref="network_group_2" />
+      <cc:Destination ref="private_net" />
+      <cc:Target ref="private_net" />
     </cc:Route>
   </cc:Routes>
   <cc:NetworkFilters>
