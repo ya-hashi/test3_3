@@ -350,6 +350,10 @@
       <cc:Routes>
         <cc:Route ref="net1" />
       </cc:Routes>
+      <cc:NATs>
+        <cc:NAT ref="ap-nat" />
+        <cc:NAT ref="db-nat" />
+      </cc:NATs>
     </cc:NetworkGroup>
   </cc:NetworkGroups>
   <cc:Routes>
@@ -410,6 +414,16 @@
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:NetworkFilter>
   </cc:NetworkFilters>
+  <cc:NATs>
+    <cc:NAT id="ap-nat">
+      <cc:Source>{{InternetGateway}}</cc:Source>
+      <cc:Destination ref="tomcat" />
+    </cc:NAT>
+    <cc:NAT id="db-nat">
+      <cc:Source>{{InternetGateway}}</cc:Source>
+      <cc:Destination ref="postgresql" />
+    </cc:NAT>
+  </cc:NATs>
   <cc:FloatingIPs>
     <cc:FloatingIP id="fip">
       <cc:Name>fip</cc:Name>

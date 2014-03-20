@@ -5,8 +5,8 @@
       <ccm:x>91.5</ccm:x>
       <ccm:y>43.5</ccm:y>
       <ccm:z>0</ccm:z>
-      <ccm:width>570</ccm:width>
-      <ccm:height>340</ccm:height>
+      <ccm:width>710</ccm:width>
+      <ccm:height>490</ccm:height>
     </ccm:Node>
     <ccm:Node id="network_1" xsi:type="ccm:Network">
       <ccm:x>145.5</ccm:x>
@@ -16,7 +16,7 @@
     </ccm:Node>
     <ccm:Node id="network_2" xsi:type="ccm:Network">
       <ccm:x>144.5</ccm:x>
-      <ccm:y>263.5</ccm:y>
+      <ccm:y>353.5</ccm:y>
       <ccm:z>2</ccm:z>
       <ccm:children>3</ccm:children>
     </ccm:Node>
@@ -32,17 +32,17 @@
     </ccm:Node>
     <ccm:Node id="tomacat_m" xsi:type="ccm:Machine">
       <ccm:x>311.5</ccm:x>
-      <ccm:y>304.5</ccm:y>
+      <ccm:y>394.5</ccm:y>
       <ccm:z>10</ccm:z>
     </ccm:Node>
     <ccm:Node id="postgresql_m" xsi:type="ccm:Machine">
       <ccm:x>465.5</ccm:x>
-      <ccm:y>304.5</ccm:y>
+      <ccm:y>394.5</ccm:y>
       <ccm:z>11</ccm:z>
     </ccm:Node>
     <ccm:Node id="router" xsi:type="ccm:Router">
       <ccm:x>208.5</ccm:x>
-      <ccm:y>150.5</ccm:y>
+      <ccm:y>250.5</ccm:y>
       <ccm:z>11</ccm:z>
     </ccm:Node>
   </ccm:Nodes>
@@ -82,13 +82,13 @@
     <ccm:Link>
       <ccm:Source ref="router" />
       <ccm:Target ref="network_2">
-        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(1)    </ccm:Selector>
+        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(1)</ccm:Selector>
       </ccm:Target>
     </ccm:Link>
     <ccm:Link>
       <ccm:Source ref="router" />
       <ccm:Target ref="network_1">
-        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(1)    </ccm:Selector>
+        <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(1)</ccm:Selector>
       </ccm:Target>
     </ccm:Link>
   </ccm:Links>
