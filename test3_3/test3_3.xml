@@ -15,7 +15,7 @@
       <cc:Name>apache_m</cc:Name>
       <cc:SpecType>small</cc:SpecType>
       <cc:OSType>CentOS</cc:OSType>
-      <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
+      <cc:OSVersion>6.5</cc:OSVersion>
       <cc:NetworkInterfaces>
         <cc:NetworkInterface ref="dmz" />
       </cc:NetworkInterfaces>
@@ -32,7 +32,7 @@
       <cc:Name>zabbix_m</cc:Name>
       <cc:SpecType>small</cc:SpecType>
       <cc:OSType>CentOS</cc:OSType>
-      <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
+      <cc:OSVersion>6.5</cc:OSVersion>
       <cc:NetworkInterfaces>
         <cc:NetworkInterface ref="dmz" />
       </cc:NetworkInterfaces>
@@ -53,7 +53,7 @@
       <cc:Name>tomacat_m</cc:Name>
       <cc:SpecType>small</cc:SpecType>
       <cc:OSType>CentOS</cc:OSType>
-      <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
+      <cc:OSVersion>6.5</cc:OSVersion>
       <cc:NetworkInterfaces>
         <cc:NetworkInterface ref="private" />
       </cc:NetworkInterfaces>
@@ -69,7 +69,7 @@
       <cc:Name>postgresql_m</cc:Name>
       <cc:SpecType>small</cc:SpecType>
       <cc:OSType>CentOS</cc:OSType>
-      <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
+      <cc:OSVersion>6.5</cc:OSVersion>
       <cc:NetworkInterfaces>
         <cc:NetworkInterface ref="private" />
       </cc:NetworkInterfaces>
