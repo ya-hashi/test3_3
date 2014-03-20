@@ -37,6 +37,7 @@
         <cc:MachineFilter ref="sec_in_80" />
         <cc:MachineFilter ref="sec_in_all_deny" />
         <cc:MachineFilter ref="sec_out_all_allow" />
+        <cc:MachineFilter ref="sec_in_3128" />
       </cc:MachineFilters>
     </cc:Machine>
     <cc:Machine id="tomacat_m">
@@ -242,6 +243,13 @@
       <cc:Port>all</cc:Port>
       <cc:Direction>egress</cc:Direction>
       <cc:Destination>all</cc:Destination>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:MachineFilter>
+    <cc:MachineFilter id="sec_in_3128">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>3128</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source>all</cc:Source>
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:MachineFilter>
     <cc:MachineFilter id="sec_in_8009">
