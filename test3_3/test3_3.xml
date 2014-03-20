@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <cc:System xmlns:cc="http://cloudconductor.org/namespaces/cc">
-  <cc:Name>tominaga-test</cc:Name>
+  <cc:Name>3segment</cc:Name>
   <cc:Description>test system</cc:Description>
   <cc:Author>tominaga443</cc:Author>
   <cc:Date>2014-03-19</cc:Date>
@@ -21,6 +21,9 @@
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
         <cc:MachineFilter ref="sec_in_80" />
+        <cc:MachineFilter ref="sec_in_443" />
+        <cc:MachineFilter ref="sec_in_22" />
+        <cc:MachineFilter ref="sec_in_10050" />
         <cc:MachineFilter ref="sec_in_all_deny" />
         <cc:MachineFilter ref="sec_out_all_allow" />
       </cc:MachineFilters>
@@ -35,9 +38,15 @@
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
         <cc:MachineFilter ref="sec_in_80" />
+        <cc:MachineFilter ref="sec_in_3128_amz" />
+        <cc:MachineFilter ref="sec_in_443" />
+        <cc:MachineFilter ref="sec_in_53" />
+        <cc:MachineFilter ref="sec_in_10051" />
+        <cc:MachineFilter ref="sec_in_udp_53" />
+        <cc:MachineFilter ref="sec_in_22" />
+        <cc:MachineFilter ref="sec_in_3128_private" />
         <cc:MachineFilter ref="sec_in_all_deny" />
         <cc:MachineFilter ref="sec_out_all_allow" />
-        <cc:MachineFilter ref="sec_in_3128" />
       </cc:MachineFilters>
     </cc:Machine>
     <cc:Machine id="tomacat_m">
@@ -49,7 +58,9 @@
         <cc:NetworkInterface ref="private" />
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
-        <cc:MachineFilter ref="sec_in_8009" />
+        <cc:MachineFilter ref="sec_in_8080" />
+        <cc:MachineFilter ref="sec_in_22" />
+        <cc:MachineFilter ref="sec_in_10050" />
         <cc:MachineFilter ref="sec_in_all_deny" />
         <cc:MachineFilter ref="sec_out_all_allow" />
       </cc:MachineFilters>
@@ -64,6 +75,8 @@
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
         <cc:MachineFilter ref="sec_in_5432" />
+        <cc:MachineFilter ref="sec_in_22" />
+        <cc:MachineFilter ref="sec_in_10050" />
         <cc:MachineFilter ref="sec_in_all_deny" />
         <cc:MachineFilter ref="sec_out_all_allow" />
       </cc:MachineFilters>
@@ -182,8 +195,8 @@
         <cc:Middleware ref="deploy_cookbook" />
         <cc:Middleware ref="nsupdate_cookbook" />
       </cc:Middlewares>
-      <cc:Import type="chef_runlist">https://raw.github.com/cloudconductor-dev/chef-parameters/master/chef_runlist_apache.json</cc:Import>
-      <cc:Import type="chef_attribute">https://raw.github.com/cloudconductor-dev/chef-parameters/master/chef_attr_apache.json</cc:Import>
+      <cc:Import type="chef_runlist">https://raw.github.com/cloudconductor-dev/chef-parameters/release-0.2.0/chef_runlist_apache.json</cc:Import>
+      <cc:Import type="chef_attribute">https://raw.github.com/cloudconductor-dev/chef-parameters/release-0.2.0/chef_attr_apache.json</cc:Import>
       <cc:UserInputKeys>
         <cc:UserInputKey>apache.contact</cc:UserInputKey>
       </cc:UserInputKeys>
@@ -197,8 +210,8 @@
         <cc:Middleware ref="nsupdate_cookbook" />
         <cc:Middleware ref="application_java" />
       </cc:Middlewares>
-      <cc:Import type="chef_runlist">https://raw.github.com/cloudconductor-dev/chef-parameters/master/chef_runlist_tomcat.json</cc:Import>
-      <cc:Import type="chef_attribute">https://raw.github.com/cloudconductor-dev/chef-parameters/master/chef_attr_tomcat.json</cc:Import>
+      <cc:Import type="chef_runlist">https://raw.github.com/cloudconductor-dev/chef-parameters/release-0.2.0/chef_runlist_tomcat.json</cc:Import>
+      <cc:Import type="chef_attribute">https://raw.github.com/cloudconductor-dev/chef-parameters/release-0.2.0/chef_attr_tomcat.json</cc:Import>
     </cc:Role>
     <cc:Role type="chef" id="db_role">
       <cc:Name>DB Server Role</cc:Name>
@@ -208,8 +221,8 @@
         <cc:Middleware ref="deploy_cookbook" />
         <cc:Middleware ref="nsupdate_cookbook" />
       </cc:Middlewares>
-      <cc:Import type="chef_runlist">https://raw.github.com/cloudconductor-dev/chef-parameters/master/chef_runlist_postgresql.json</cc:Import>
-      <cc:Import type="chef_attribute">https://raw.github.com/cloudconductor-dev/chef-parameters/master/chef_attr_postgresql.json</cc:Import>
+      <cc:Import type="chef_runlist">https://raw.github.com/cloudconductor-dev/chef-parameters/release-0.2.0/chef_runlist_postgresql.json</cc:Import>
+      <cc:Import type="chef_attribute">https://raw.github.com/cloudconductor-dev/chef-parameters/release-0.2.0/chef_attr_postgresql.json</cc:Import>
     </cc:Role>
     <cc:Role type="chef" id="zabbix_dns_role">
       <cc:Name>Monitoring Server Role</cc:Name>
@@ -219,8 +232,8 @@
         <cc:Middleware ref="deploy_cookbook" />
         <cc:Middleware ref="nsupdate_cookbook" />
       </cc:Middlewares>
-      <cc:Import type="chef_runlist">https://raw.github.com/cloudconductor-dev/chef-parameters/master/chef_runlist_zabbix.json</cc:Import>
-      <cc:Import type="chef_attribute">https://raw.github.com/cloudconductor-dev/chef-parameters/master/chef_attr_zabbix.json</cc:Import>
+      <cc:Import type="chef_runlist">https://raw.github.com/cloudconductor-dev/chef-parameters/release-0.2.0/chef_runlist_zabbix.json</cc:Import>
+      <cc:Import type="chef_attribute">https://raw.github.com/cloudconductor-dev/chef-parameters/release-0.2.0/chef_attr_zabbix.json</cc:Import>
     </cc:Role>
   </cc:Roles>
   <cc:MachineFilters>
@@ -229,6 +242,27 @@
       <cc:Port>80</cc:Port>
       <cc:Direction>ingress</cc:Direction>
       <cc:Source>all</cc:Source>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:MachineFilter>
+    <cc:MachineFilter id="sec_in_443">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>443</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source>all</cc:Source>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:MachineFilter>
+    <cc:MachineFilter id="sec_in_22">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>22</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source>all</cc:Source>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:MachineFilter>
+    <cc:MachineFilter id="sec_in_10050">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>10050</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source ref="dmz" />
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:MachineFilter>
     <cc:MachineFilter id="sec_in_all_deny">
@@ -245,18 +279,46 @@
       <cc:Destination>all</cc:Destination>
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:MachineFilter>
-    <cc:MachineFilter id="sec_in_3128">
+    <cc:MachineFilter id="sec_in_3128_amz">
       <cc:Protocol>tcp</cc:Protocol>
       <cc:Port>3128</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source ref="dmz" />
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:MachineFilter>
+    <cc:MachineFilter id="sec_in_53">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>53</cc:Port>
       <cc:Direction>ingress</cc:Direction>
       <cc:Source>all</cc:Source>
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:MachineFilter>
-    <cc:MachineFilter id="sec_in_8009">
+    <cc:MachineFilter id="sec_in_10051">
       <cc:Protocol>tcp</cc:Protocol>
-      <cc:Port>8009</cc:Port>
+      <cc:Port>10051</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source ref="dmz" />
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:MachineFilter>
+    <cc:MachineFilter id="sec_in_udp_53">
+      <cc:Protocol>udp</cc:Protocol>
+      <cc:Port>53</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source>all</cc:Source>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:MachineFilter>
+    <cc:MachineFilter id="sec_in_3128_private">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>3128</cc:Port>
       <cc:Direction>ingress</cc:Direction>
       <cc:Source ref="private" />
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:MachineFilter>
+    <cc:MachineFilter id="sec_in_8080">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>8080</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source ref="dmz" />
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:MachineFilter>
     <cc:MachineFilter id="sec_in_5432">
