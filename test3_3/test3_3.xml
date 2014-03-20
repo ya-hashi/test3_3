@@ -20,12 +20,9 @@
         <cc:NetworkInterface ref="dmz" />
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
-        <cc:MachineFilter ref="http80" />
-        <cc:MachineFilter ref="http8080" />
-        <cc:MachineFilter ref="ssh" />
-        <cc:MachineFilter ref="out_all_tcp" />
-        <cc:MachineFilter ref="out_all_udp" />
-        <cc:MachineFilter ref="out_all_icmp" />
+        <cc:MachineFilter ref="sec_in_80" />
+        <cc:MachineFilter ref="sec_in_all_deny" />
+        <cc:MachineFilter ref="sec_out_all_allow" />
       </cc:MachineFilters>
     </cc:Machine>
     <cc:Machine id="zabbix_m">
@@ -37,12 +34,9 @@
         <cc:NetworkInterface ref="dmz" />
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
-        <cc:MachineFilter ref="in_all_tcp" />
-        <cc:MachineFilter ref="in_all_udp" />
-        <cc:MachineFilter ref="in_all_icmp" />
-        <cc:MachineFilter ref="out_all_tcp" />
-        <cc:MachineFilter ref="out_all_udp" />
-        <cc:MachineFilter ref="out_all_icmp" />
+        <cc:MachineFilter ref="sec_in_80" />
+        <cc:MachineFilter ref="sec_in_all_deny" />
+        <cc:MachineFilter ref="sec_out_all_allow" />
       </cc:MachineFilters>
     </cc:Machine>
     <cc:Machine id="tomacat_m">
@@ -51,15 +45,12 @@
       <cc:OSType>CentOS</cc:OSType>
       <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
       <cc:NetworkInterfaces>
-        <cc:NetworkInterface ref="private_net" />
+        <cc:NetworkInterface ref="private" />
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
-        <cc:MachineFilter ref="out_all_tcp" />
-        <cc:MachineFilter ref="out_all_udp" />
-        <cc:MachineFilter ref="out_all_icmp" />
-        <cc:MachineFilter ref="in_all_tcp" />
-        <cc:MachineFilter ref="in_all_udp" />
-        <cc:MachineFilter ref="in_all_icmp" />
+        <cc:MachineFilter ref="sec_in_8009" />
+        <cc:MachineFilter ref="sec_in_all_deny" />
+        <cc:MachineFilter ref="sec_out_all_allow" />
       </cc:MachineFilters>
     </cc:Machine>
     <cc:Machine id="postgresql_m">
@@ -68,15 +59,12 @@
       <cc:OSType>CentOS</cc:OSType>
       <cc:OSVersion>6.5-TEST_1</cc:OSVersion>
       <cc:NetworkInterfaces>
-        <cc:NetworkInterface ref="private_net" />
+        <cc:NetworkInterface ref="private" />
       </cc:NetworkInterfaces>
       <cc:MachineFilters>
-        <cc:MachineFilter ref="out_all_tcp" />
-        <cc:MachineFilter ref="out_all_udp" />
-        <cc:MachineFilter ref="out_all_icmp" />
-        <cc:MachineFilter ref="in_all_tcp" />
-        <cc:MachineFilter ref="in_all_udp" />
-        <cc:MachineFilter ref="in_all_icmp" />
+        <cc:MachineFilter ref="sec_in_5432" />
+        <cc:MachineFilter ref="sec_in_all_deny" />
+        <cc:MachineFilter ref="sec_out_all_allow" />
       </cc:MachineFilters>
     </cc:Machine>
   </cc:Machines>
@@ -235,195 +223,134 @@
     </cc:Role>
   </cc:Roles>
   <cc:MachineFilters>
-    <cc:MachineFilter id="http80">
+    <cc:MachineFilter id="sec_in_80">
       <cc:Protocol>tcp</cc:Protocol>
       <cc:Port>80</cc:Port>
       <cc:Direction>ingress</cc:Direction>
       <cc:Source>all</cc:Source>
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:MachineFilter>
-    <cc:MachineFilter id="http8080">
+    <cc:MachineFilter id="sec_in_all_deny">
       <cc:Protocol>tcp</cc:Protocol>
-      <cc:Port>8080</cc:Port>
+      <cc:Port>all</cc:Port>
       <cc:Direction>ingress</cc:Direction>
       <cc:Source>all</cc:Source>
-      <cc:RuleAction>allow</cc:RuleAction>
+      <cc:RuleAction>deny</cc:RuleAction>
     </cc:MachineFilter>
-    <cc:MachineFilter id="ssh">
-      <cc:Protocol>tcp</cc:Protocol>
-      <cc:Port>22</cc:Port>
-      <cc:Direction>ingress</cc:Direction>
-      <cc:Source>all</cc:Source>
-      <cc:RuleAction>allow</cc:RuleAction>
-    </cc:MachineFilter>
-    <cc:MachineFilter id="out_all_tcp">
+    <cc:MachineFilter id="sec_out_all_allow">
       <cc:Protocol>tcp</cc:Protocol>
       <cc:Port>all</cc:Port>
       <cc:Direction>egress</cc:Direction>
       <cc:Destination>all</cc:Destination>
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:MachineFilter>
-    <cc:MachineFilter id="out_all_udp">
-      <cc:Protocol>udp</cc:Protocol>
-      <cc:Port>all</cc:Port>
-      <cc:Direction>egress</cc:Direction>
-      <cc:Destination>all</cc:Destination>
-      <cc:RuleAction>allow</cc:RuleAction>
-    </cc:MachineFilter>
-    <cc:MachineFilter id="out_all_icmp">
-      <cc:Protocol>icmp</cc:Protocol>
-      <cc:Port>all</cc:Port>
-      <cc:Direction>egress</cc:Direction>
-      <cc:Destination>all</cc:Destination>
-      <cc:RuleAction>allow</cc:RuleAction>
-    </cc:MachineFilter>
-    <cc:MachineFilter id="in_all_tcp">
+    <cc:MachineFilter id="sec_in_8009">
       <cc:Protocol>tcp</cc:Protocol>
-      <cc:Port>all</cc:Port>
+      <cc:Port>8009</cc:Port>
       <cc:Direction>ingress</cc:Direction>
-      <cc:Source>all</cc:Source>
+      <cc:Source ref="private" />
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:MachineFilter>
-    <cc:MachineFilter id="in_all_udp">
-      <cc:Protocol>udp</cc:Protocol>
-      <cc:Port>all</cc:Port>
+    <cc:MachineFilter id="sec_in_5432">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>5432</cc:Port>
       <cc:Direction>ingress</cc:Direction>
-      <cc:Source>all</cc:Source>
-      <cc:RuleAction>allow</cc:RuleAction>
-    </cc:MachineFilter>
-    <cc:MachineFilter id="in_all_icmp">
-      <cc:Protocol>icmp</cc:Protocol>
-      <cc:Port>all</cc:Port>
-      <cc:Direction>ingress</cc:Direction>
-      <cc:Source>all</cc:Source>
+      <cc:Source ref="private" />
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:MachineFilter>
   </cc:MachineFilters>
   <cc:Networks>
-    <cc:Network id="network_1">
-      <cc:Name>network_1</cc:Name>
+    <cc:Network id="dmz">
+      <cc:Name>dmz</cc:Name>
     </cc:Network>
-    <cc:Network id="network_2">
-      <cc:Name>Network_2</cc:Name>
+    <cc:Network id="private">
+      <cc:Name>private</cc:Name>
     </cc:Network>
   </cc:Networks>
   <cc:NetworkGroups>
     <cc:NetworkGroup id="dmz">
       <cc:Name>dmz</cc:Name>
       <cc:Networks>
-        <cc:Network ref="network_1">
+        <cc:Network ref="dmz">
           <cc:Infrastructures>
             <cc:Infrastructure ref="infrastructure_1" />
           </cc:Infrastructures>
         </cc:Network>
       </cc:Networks>
       <cc:NetworkFilters>
-        <cc:NetworkFilter ref="in_all_tcp" />
-        <cc:NetworkFilter ref="in_all_udp" />
-        <cc:NetworkFilter ref="in_all_icmp" />
-        <cc:NetworkFilter ref="out_all_tcp" />
-        <cc:NetworkFilter ref="out_all_udp" />
-        <cc:NetworkFilter ref="out_all_icmp" />
+        <cc:NetworkFilter ref="acl_in_80_to_dmz" />
+        <cc:NetworkFilter ref="acl_in_all_deny" />
+        <cc:NetworkFilter ref="acl_out_all_allow" />
       </cc:NetworkFilters>
       <cc:Routes>
-        <cc:Route ref="internet" />
-        <cc:Route ref="net2" />
+        <cc:Route ref="all" />
+        <cc:Route ref="private" />
       </cc:Routes>
     </cc:NetworkGroup>
-    <cc:NetworkGroup id="private_net">
-      <cc:Name>private_net</cc:Name>
+    <cc:NetworkGroup id="private">
+      <cc:Name>private</cc:Name>
       <cc:Networks>
-        <cc:Network ref="network_2">
+        <cc:Network ref="private">
           <cc:Infrastructures>
             <cc:Infrastructure ref="infrastructure_1" />
           </cc:Infrastructures>
         </cc:Network>
       </cc:Networks>
       <cc:NetworkFilters>
-        <cc:NetworkFilter ref="in_all_tcp" />
-        <cc:NetworkFilter ref="in_all_udp" />
-        <cc:NetworkFilter ref="in_all_icmp" />
-        <cc:NetworkFilter ref="out_all_tcp" />
-        <cc:NetworkFilter ref="out_all_udp" />
-        <cc:NetworkFilter ref="out_all_icmp" />
+        <cc:NetworkFilter ref="acl_in_80_dmz_to_pri" />
+        <cc:NetworkFilter ref="acl_in_all_deny" />
+        <cc:NetworkFilter ref="acl_out_all_allow" />
       </cc:NetworkFilters>
       <cc:Routes>
-        <cc:Route ref="net1" />
+        <cc:Route ref="all" />
+        <cc:Route ref="dmz" />
       </cc:Routes>
-      <cc:NATs>
-        <cc:NAT ref="ap-nat" />
-        <cc:NAT ref="db-nat" />
-      </cc:NATs>
     </cc:NetworkGroup>
   </cc:NetworkGroups>
   <cc:Routes>
-    <cc:Route id="internet">
+    <cc:Route id="all">
       <cc:Destination>all</cc:Destination>
       <cc:Target>{{InternetGateway}}</cc:Target>
     </cc:Route>
-    <cc:Route id="net1">
+    <cc:Route id="dmz">
       <cc:Destination ref="dmz" />
       <cc:Target ref="dmz" />
     </cc:Route>
-    <cc:Route id="net2">
-      <cc:Destination ref="private_net" />
-      <cc:Target ref="private_net" />
+    <cc:Route id="private">
+      <cc:Destination ref="private" />
+      <cc:Target ref="private" />
     </cc:Route>
   </cc:Routes>
   <cc:NetworkFilters>
-    <cc:NetworkFilter id="in_all_tcp">
+    <cc:NetworkFilter id="acl_in_80_to_dmz">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>80</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source>all</cc:Source>
+      <cc:RuleAction>allow</cc:RuleAction>
+    </cc:NetworkFilter>
+    <cc:NetworkFilter id="acl_in_all_deny">
       <cc:Protocol>tcp</cc:Protocol>
       <cc:Port>all</cc:Port>
       <cc:Direction>ingress</cc:Direction>
       <cc:Source>all</cc:Source>
-      <cc:RuleAction>allow</cc:RuleAction>
+      <cc:RuleAction>deny</cc:RuleAction>
     </cc:NetworkFilter>
-    <cc:NetworkFilter id="in_all_udp">
-      <cc:Protocol>udp</cc:Protocol>
-      <cc:Port>all</cc:Port>
-      <cc:Direction>ingress</cc:Direction>
-      <cc:Source>all</cc:Source>
-      <cc:RuleAction>allow</cc:RuleAction>
-    </cc:NetworkFilter>
-    <cc:NetworkFilter id="in_all_icmp">
-      <cc:Protocol>icmp</cc:Protocol>
-      <cc:Port>all</cc:Port>
-      <cc:Direction>ingress</cc:Direction>
-      <cc:Source>all</cc:Source>
-      <cc:RuleAction>allow</cc:RuleAction>
-    </cc:NetworkFilter>
-    <cc:NetworkFilter id="out_all_tcp">
+    <cc:NetworkFilter id="acl_out_all_allow">
       <cc:Protocol>tcp</cc:Protocol>
       <cc:Port>all</cc:Port>
       <cc:Direction>egress</cc:Direction>
       <cc:Destination>all</cc:Destination>
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:NetworkFilter>
-    <cc:NetworkFilter id="out_all_udp">
-      <cc:Protocol>udp</cc:Protocol>
-      <cc:Port>all</cc:Port>
-      <cc:Direction>egress</cc:Direction>
-      <cc:Destination>all</cc:Destination>
-      <cc:RuleAction>allow</cc:RuleAction>
-    </cc:NetworkFilter>
-    <cc:NetworkFilter id="out_all_icmp">
-      <cc:Protocol>icmp</cc:Protocol>
-      <cc:Port>all</cc:Port>
-      <cc:Direction>egress</cc:Direction>
-      <cc:Destination>all</cc:Destination>
+    <cc:NetworkFilter id="acl_in_80_dmz_to_pri">
+      <cc:Protocol>tcp</cc:Protocol>
+      <cc:Port>80</cc:Port>
+      <cc:Direction>ingress</cc:Direction>
+      <cc:Source ref="dmz" />
       <cc:RuleAction>allow</cc:RuleAction>
     </cc:NetworkFilter>
   </cc:NetworkFilters>
-  <cc:NATs>
-    <cc:NAT id="ap-nat">
-      <cc:Source>{{InternetGateway}}</cc:Source>
-      <cc:Destination ref="tomcat" />
-    </cc:NAT>
-    <cc:NAT id="db-nat">
-      <cc:Source>{{InternetGateway}}</cc:Source>
-      <cc:Destination ref="postgresql" />
-    </cc:NAT>
-  </cc:NATs>
   <cc:FloatingIPs>
     <cc:FloatingIP id="fip">
       <cc:Name>fip</cc:Name>

@@ -8,13 +8,13 @@
       <ccm:width>710</ccm:width>
       <ccm:height>490</ccm:height>
     </ccm:Node>
-    <ccm:Node id="network_1" xsi:type="ccm:Network">
+    <ccm:Node id="dmz" xsi:type="ccm:Network">
       <ccm:x>145.5</ccm:x>
       <ccm:y>106.5</ccm:y>
       <ccm:z>1</ccm:z>
       <ccm:children>3</ccm:children>
     </ccm:Node>
-    <ccm:Node id="network_2" xsi:type="ccm:Network">
+    <ccm:Node id="private" xsi:type="ccm:Network">
       <ccm:x>144.5</ccm:x>
       <ccm:y>353.5</ccm:y>
       <ccm:z>2</ccm:z>
@@ -51,7 +51,7 @@
       <ccm:Source ref="zabbix_m">
         <ccm:Selector>g:nth-child(1) g:nth-child(2)</ccm:Selector>
       </ccm:Source>
-      <ccm:Target ref="network_1">
+      <ccm:Target ref="dmz">
         <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(3)</ccm:Selector>
       </ccm:Target>
     </ccm:Link>
@@ -59,7 +59,7 @@
       <ccm:Source ref="apache_m">
         <ccm:Selector>g:nth-child(1) g:nth-child(2)</ccm:Selector>
       </ccm:Source>
-      <ccm:Target ref="network_1">
+      <ccm:Target ref="dmz">
         <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(2)</ccm:Selector>
       </ccm:Target>
     </ccm:Link>
@@ -67,7 +67,7 @@
       <ccm:Source ref="tomacat_m">
         <ccm:Selector>g:nth-child(1) g:nth-child(2)</ccm:Selector>
       </ccm:Source>
-      <ccm:Target ref="network_2">
+      <ccm:Target ref="private">
         <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(2)</ccm:Selector>
       </ccm:Target>
     </ccm:Link>
@@ -75,19 +75,19 @@
       <ccm:Source ref="postgresql_m">
         <ccm:Selector>g:nth-child(1) g:nth-child(2)</ccm:Selector>
       </ccm:Source>
-      <ccm:Target ref="network_2">
+      <ccm:Target ref="private">
         <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(3)</ccm:Selector>
       </ccm:Target>
     </ccm:Link>
     <ccm:Link>
       <ccm:Source ref="router" />
-      <ccm:Target ref="network_2">
+      <ccm:Target ref="private">
         <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(1)</ccm:Selector>
       </ccm:Target>
     </ccm:Link>
     <ccm:Link>
       <ccm:Source ref="router" />
-      <ccm:Target ref="network_1">
+      <ccm:Target ref="dmz">
         <ccm:Selector>g:nth-child(1) g:nth-child(3) circle:nth-child(1)</ccm:Selector>
       </ccm:Target>
     </ccm:Link>
